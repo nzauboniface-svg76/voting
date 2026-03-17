@@ -42,6 +42,7 @@ class Voter(models.Model):
         ('Electrical Engineering', 'Electrical Engineering'),
         ('Fashion and Design', 'Fashion and Design'),
         ('Business and secretarial studies', 'Business and secretarial studies'),
+        ('Human Resource Management', 'Human Resource Management'),
         ('Other', 'Other'),
     ]
     

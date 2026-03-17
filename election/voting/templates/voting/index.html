@@ -1985,19 +1985,41 @@ function submitFeedback() {
         return;
     }
     
-    const confirmationMsg = document.getElementById('confirmation-message');
-    if (confirmationMsg) confirmationMsg.style.display = 'block';
-    
-    const deptSelect = document.getElementById('feedback-dept');
-    const feedbackInput = document.getElementById('feedback');
-    if (deptSelect) deptSelect.value = '';
-    if (feedbackInput) feedbackInput.value = '';
-    
-    if (confirmationMsg) confirmationMsg.scrollIntoView({ behavior: 'smooth' });
-    
-    setTimeout(() => {
-        if (confirmationMsg) confirmationMsg.style.display = 'none';
-    }, 5000);
+    // Send feedback to server
+    fetch('/api/feedback/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            department: department,
+            message: feedback
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const confirmationMsg = document.getElementById('confirmation-message');
+            if (confirmationMsg) confirmationMsg.style.display = 'block';
+            
+            const deptSelect = document.getElementById('feedback-dept');
+            const feedbackInput = document.getElementById('feedback');
+            if (deptSelect) deptSelect.value = '';
+            if (feedbackInput) feedbackInput.value = '';
+            
+            if (confirmationMsg) confirmationMsg.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                if (confirmationMsg) confirmationMsg.style.display = 'none';
+            }, 5000);
+        } else {
+            alert('Error submitting feedback: ' + (data.error || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error submitting feedback. Please try again.');
+    });
 }
 
 // ===== INITIALIZE =====

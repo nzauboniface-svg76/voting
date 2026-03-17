@@ -451,9 +451,9 @@ function updateStatistics() {
     // Update department breakdown
     let deptHTML = '';
     const departments = [
-        "Automative Engineering", "Agriculture Extensions", "Building and Construction", "Beauty and Hairdressing",
-        "Callinery Arts", "Computing and Informatics", "Electrical Engineering", "Fashion and Design", 
-        "Business and secretarial studies", "Other"
+        "Automotive Engineering", "Agriculture Extensions", "Building and Construction", "Beauty and Hairdressing",
+        "Callinery Arts", "Computing and Informatics", "Electrical Engineering", "Fashion and Design",
+        "Business and secretarial studies", "Human Resource Management", "Other"
     ];
     
     departments.forEach(dept => {
